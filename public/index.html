@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home & Developer</title>
+    <title>Sean M. Pauly: Innovator, Visionary, Trailblazer</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         body {
-            background-image: url('https://seanmpauly.com/background.png');
+            background-image: url('https://seanmpauly.com/assets/background.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -35,51 +37,99 @@
         .text-outline {
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            animation-duration: 0.5s;
+        }
+
+        .modal-content {
+            background-color: #2d3748;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            animation: fadeInUp 0.5s;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-gray-900 bg-opacity-70 text-white font-roboto text-outline">
-    <div class="container mx-auto p-6">
+    <div class="container mx-auto p-6 animate__animated animate__fadeIn">
         <header class="flex justify-between items-center mb-12">
             <div class="flex items-center space-x-4">
-                <button class="bg-gray-700 p-2 rounded-md text-outline" aria-label="Dashboard" onclick="navigateToDashboard()"><i class="fas fa-th-large"></i></button>
-                <button class="bg-gray-700 p-2 rounded-md text-outline" aria-label="Menu" onclick="toggleMenu()"><i class="fas fa-align-left"></i></button>
-                <button class="bg-gray-700 p-2 rounded-md text-outline" aria-label="User" onclick="openUserProfile()"><i class="fas fa-user"></i></button>
+                <a href="index.html">
+                    <img src="assets/icon.png" alt="Icon" height="50" width="50">
+                </a>
             </div>
             <nav class="flex space-x-8 text-outline">
-                <a href="#" class="text-white text-outline">ABOUT</a>
-                <a href="#" class="text-white text-outline">PROJECTS</a>
-                <a href="#" class="text-white text-outline">RESUME</a>
-                <a href="#" class="text-white text-outline">BLOG</a>
-                <a href="#" class="text-white text-outline">CONTACT</a>
+                <a href="#" class="text-white text-outline" onclick="toggleModal('aboutModal')">ABOUT</a>
+                <a href="#" class="text-white text-outline" onclick="toggleModal('projectsModal')">PROJECTS</a>
+                <a href="https://seanmpauly.com/assets/resume.pdf" target="_blank" class="text-white text-outline">RESUME</a>
+                <a href="#" class="text-white text-outline" onclick="toggleModal('blogModal')">BLOG</a>
+                <a href="#" class="text-white text-outline" onclick="toggleModal('contactModal')">CONTACT</a>
             </nav>
-            <div class="flex items-center space-x-4">
-                <button class="bg-gray-700 p-2 rounded-md text-outline" aria-label="Search"><i class="fas fa-search"></i></button>
-            </div>
         </header>
 
         <main class="flex flex-col items-center">
-            <h1 class="text-6xl font-bold mb-6 text-outline">Innovator, Visionary, Trailblazer</h1>
-            <p class="text-center text-white mb-6 text-outline">Welcome to my portfolio website. Here you can find my projects, learn about me, and get in touch.</p>
-            <button class="bg-gray-700 text-white px-6 py-2 rounded-full mb-12 text-outline">Learn More</button>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-                <div class="bg-gray-800 p-4 rounded-lg text-outline">
+            <h1 class="text-6xl font-bold mb-6 text-outline animate__animated animate__fadeInDown">Innovator, Visionary, Trailblazer</h1>
+            <p class="text-center text-white mb-6 text-outline animate__animated animate__fadeIn">Welcome to my portfolio website. Here you can find my projects, learn about me, and get in touch.</p>
+            <button class="bg-gray-700 text-white px-6 py-2 rounded-full mb-12 text-outline transition duration-300 ease-in-out transform hover:scale-105" onclick="toggleModal('aboutModal')">Learn More</button>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12 animate__animated animate__fadeInUp">
+                <div class="bg-gray-800 p-4 rounded-lg text-outline transition duration-300 ease-in-out transform hover:scale-105" onclick="toggleModal('aboutModal')">
                     <h3 class="text-2xl font-bold text-outline">About</h3>
                     <p class="text-gray-400 mt-2 text-outline">Discover more about my journey and what drives me as a developer.</p>
                 </div>
-                <div class="bg-gray-800 p-4 rounded-lg text-outline">
+                <div class="bg-gray-800 p-4 rounded-lg text-outline transition duration-300 ease-in-out transform hover:scale-105" onclick="toggleModal('projectsModal')">
                     <h3 class="text-2xl font-bold text-outline">Projects</h3>
                     <p class="text-gray-400 mt-2 text-outline">Explore the projects I've worked on, including web development, AI, and more.</p>
                 </div>
-                <a href="https://seanmpauly.com/resume.pdf" target="_blank" class="bg-gray-800 p-4 rounded-lg text-outline">
+                <a href="https://seanmpauly.com/assets/resume.pdf" target="_blank" class="bg-gray-800 p-4 rounded-lg text-outline transition duration-300 ease-in-out transform hover:scale-105">
                     <h3 class="text-2xl font-bold text-outline">Resume</h3>
                     <p class="text-gray-400 mt-2 text-outline">Check out my professional experience and skills.</p>
                 </a>
-                <div class="bg-gray-800 p-4 rounded-lg text-outline">
+                <div class="bg-gray-800 p-4 rounded-lg text-outline transition duration-300 ease-in-out transform hover:scale-105" onclick="toggleModal('blogModal')">
                     <h3 class="text-2xl font-bold text-outline">Blog</h3>
                     <p class="text-gray-400 mt-2 text-outline">Read my latest blog posts on technology, programming, and more.</p>
                 </div>
-                <div class="bg-gray-800 p-4 rounded-lg text-outline">
+                <div class="bg-gray-800 p-4 rounded-lg text-outline transition duration-300 ease-in-out transform hover:scale-105" onclick="toggleModal('contactModal')">
                     <h3 class="text-2xl font-bold text-outline">Contact</h3>
                     <p class="text-gray-400 mt-2 text-outline">Get in touch with me for collaboration or just to say hi!</p>
                 </div>
@@ -87,20 +137,99 @@
         </main>
     </div>
 
+    <div id="aboutModal" class="modal" aria-hidden="true">
+        <div class="modal-content animate__animated animate__fadeInUp">
+            <span class="close" onclick="toggleModal('aboutModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 text-white">About Me</h2>
+            <p class="text-white">I am a passionate developer with a focus on innovative solutions. My journey in the tech world began at a young age, and I have continually pushed the boundaries to develop cutting-edge applications. From web development to AI, my projects reflect my dedication to excellence and continuous learning.</p>
+        </div>
+    </div>
+
+    <div id="projectsModal" class="modal" aria-hidden="true">
+        <div class="modal-content animate__animated animate__fadeInUp">
+            <span class="close" onclick="toggleModal('projectsModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 text-white">My Projects</h2>
+            <p class="text-white">Here are some of the exciting projects I've worked on:</p>
+            <ul class="text-white list-disc ml-6">
+                <li><a href="projects/statssense.html" class="text-white">StatSense: Wearable Biometrics</a></li>
+                <li><a href="projects/ciaran.html" class="text-white">CIARAN: Complex Integral Algorithmically Reliable Artificial Network</a></li>
+                <li><a href="projects/studysis.html" class="text-white">STUDYSTAR & STUDYCV: Student Information Systems</a></li>
+                <li><a href="projects/quark.html" class="text-white">Quark: Dating/Networking for the Unique</a></li>
+                <li><a href="https://SPIndustries.com" class="text-white">SP Industries: Dating/Networking for the Unique</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="blogModal" class="modal" aria-hidden="true">
+        <div class="modal-content animate__animated animate__fadeInUp">
+            <span class="close" onclick="toggleModal('blogModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 text-white">My Blog</h2>
+            <p class="text-white">Here are some of my latest blog posts:</p>
+            <ul class="text-white list-disc ml-6">
+                <li><a href="blog/post1.html" class="text-white">Blog Post 1: Understanding AI</a></li>
+                <li><a href="blog/post2.html" class="text-white">Blog Post 2: Web Development Tips</a></li>
+                <li><a href="blog/post3.html" class="text-white">Blog Post 3: Latest Tech Trends</a></li>
+                <li>More posts coming soon...</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal" aria-hidden="true">
+        <div class="modal-content animate__animated animate__fadeInUp">
+            <span class="close" onclick="toggleModal('contactModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 text-white">Contact Me</h2>
+            <form>
+                <div class="mb-4">
+                    <label for="name" class="block text-white">Name</label>
+                    <input type="text" id="name" name="name" class="w-full p-2 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-white">Email</label>
+                    <input type="email" id="email" name="email" class="w-full p-2 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-white">Message</label>
+                    <textarea id="message" name="message" class="w-full p-2 rounded-md" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="bg-gray-700 text-white px-4 py-2 rounded-full transition duration-300 ease-in-out transform hover:scale-105">Send</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        function navigateToDashboard() {
-            location.reload(); // Refreshes the current page
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal.style.display === 'flex') {
+                modal.classList.remove('animate__fadeInUp');
+                modal.classList.add('animate__fadeOutDown');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    modal.classList.remove('animate__fadeOutDown');
+                    modal.setAttribute('aria-hidden', 'true');
+                }, 500);
+            } else {
+                modal.style.display = 'flex';
+                modal.classList.add('animate__fadeInUp');
+                modal.setAttribute('aria-hidden', 'false');
+            }
         }
 
-        function toggleMenu() {
-            // Implement menu toggle functionality here
-            alert('Menu toggled'); // Replace with your actual menu toggle logic
-        }
-
-        function openUserProfile() {
-            // Implement user profile modal opening functionality here
-            alert('User profile opened'); // Replace with your actual user profile opening logic
+        // Close the modals when clicking outside of them
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.classList.remove('animate__fadeInUp');
+                    modal.classList.add('animate__fadeOutDown');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        modal.classList.remove('animate__fadeOutDown');
+                        modal.setAttribute('aria-hidden', 'true');
+                    }, 500);
+                }
+            });
         }
     </script>
 </body>
+
 </html>
